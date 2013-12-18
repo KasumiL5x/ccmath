@@ -23,6 +23,10 @@
  * @author  Daniel Green
  * @version 1.0.0
  *
+ * 2013-12-18 20:18
+ *  - Added DEG_TO_RAD, RAD_TO_DEG.
+ *  - Converted EPSILON, GRAVITY, and EARTH_RADIUS to floats from doubles.
+ *
  * 2013-11-15 13:57
  *  - Initial version.
  */
@@ -32,8 +36,12 @@
 
 namespace cc {
   namespace math {
+    /**< Magic number to multiply by to approximately convert degrees to radians. */
+    const static float DEG_TO_RAD = 0.0174532924f;
+    /**< Magic number to multiply by to approximately convert radians to degrees. */
+    const static float RAD_TO_DEG = 57.29578f;
     /**< Epsilon (Ε, http://mathworld.wolfram.com/Epsilon.html). */
-    const static double EPSILON = 0.000001;
+    const static float EPSILON = 0.000001f;
     /**< Euler-Mascheroni constant, Gamma (γ, http://mathworld.wolfram.com/Euler-MascheroniConstant.html). */
     const static double GAMMA = 0.57721566490153286060651209008240243104215933593992;
     /**< ln(2). */
@@ -55,7 +63,7 @@ namespace cc {
     /**< Half pi. */
     const static double HALF_PI = 1.57079632679;
     /**< Acceleration due to gravity (on Earth). */
-    const static double GRAVITY = 9.80665; // m/s^2
+    const static float GRAVITY = 9.80665f; // m/s^2
     /**< Atomic mass unit in kilograms (1.66053886*10^-27, http://mathworld.wolfram.com/Pi.html). */
     const static double ATOMIC_MASS_UNIT = 1.66053886e-27;
     /**< Astronomical unit in meters. */
@@ -77,7 +85,7 @@ namespace cc {
     /**< TODO: Verify and link. */
     const static double EARTH_MASS = 5973500000000000000000000.0; // Kg (5.9735*10^24)
     /**< TODO: Verify and link. */
-    const static double EARTH_RADIUS = 6378140.0;// m (6.37814*10^6)
+    const static float EARTH_RADIUS = 6378140.0f;// m (6.37814*10^6)
     /**< TODO: Verify and link. */
     const static double SPEED_OF_LIGHT = 299800000.0f; // m/s (2.998*10^8)
   }
