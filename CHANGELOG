@@ -1,0 +1,11 @@
+-----
+ Key
+-----
++ Added
+- Removed
+# Changed/Fixed
+
+--------------
+ ccmath 1.0.2
+--------------
+# Fixed bug in Vec2.inl.  Was missing iostream header include for output to a stream.

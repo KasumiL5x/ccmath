@@ -21,12 +21,16 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.0
+ * @version 1.0.2
+ *
+ * 2013-12-31 22:52
+ *  - Fixed missing iostream include.
  *
  * 2013-11-15 13:57
  *  - Initial version.
  */
 
+#include <iostream>
 #include <cassert>
 #include <cmath>
 #include "Common.hpp"
