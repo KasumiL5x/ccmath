@@ -19,14 +19,6 @@
   along with ccmath.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * @author  Daniel Green
- * @version 1.0.2
- *
- * 2013-11-15 13:57
- *  - Initial version.
- */
-
 #include <iostream>
 #include <cassert>
 #include <cmath>
@@ -274,5 +266,47 @@ namespace cc {
     inline Vec3<T> Vec3<T>::reflect( const Vec3<T>& direction ) {
       return static_cast<T>(-2) * direction.dot(*this) * direction + (*this);
     }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::zero() {
+      return Vec3<T>(static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::one() {
+      return Vec3<T>(static_cast<T>(1));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::up() {
+      return Vec3<T>(static_cast<T>(0), static_cast<T>(1), static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::down() {
+      return Vec3<T>(static_cast<T>(0), static_cast<T>(-1), static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::left() {
+      return Vec3<T>(static_cast<T>(-1), static_cast<T>(0), static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::right() {
+      return Vec3<T>(static_cast<T>(1), static_cast<T>(0), static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::forward() {
+      return Vec3<T>(static_cast<T>(0), static_cast<T>(0), static_cast<T>(-1));
+    }
+
+    template<typename T>
+    inline Vec3<T> Vec3<T>::backward() {
+      return Vec3<T>(static_cast<T>(0), static_cast<T>(0), static_cast<T>(1));
+    }
+
+
   } /* math */
 } /* cc */

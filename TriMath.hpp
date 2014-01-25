@@ -21,7 +21,6 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.2
  *
  * 2013-11-15 13:57
  *  - Initial version.

@@ -6,6 +6,17 @@
 # Changed/Fixed
 
 --------------
+ ccmath 1.0.3
+--------------
+- Removed changelog header from *.inl.
+- Removed per-file version listed in the header.
++ Added transpose and transposed to Mat4.
++ Added getters and setters for forward, backward, up, down, left, right, and translation components of Mat4.
++ Added static zero and one to Vec2.
++ Added static zero, one, up, down, left, right, forward, an backward to Vec3.
++ Added negation to Vec4.
+
+--------------
  ccmath 1.0.2
 --------------
 # Fixed bug in Vec2.inl.  Was missing iostream header include for output to a stream.

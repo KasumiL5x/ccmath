@@ -21,7 +21,12 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.2
+ *
+ * 2014-01-25 16:49
+ *  - Added transpose and transposed functions.  How did I forget them before?!
+ *
+ * 2014-01-25 15:50
+ *  - Added getters and setters for forward, backward, up, down, left, right, and translation.
  *
  * 2013-11-15 13:57
  *  - Initial version.
@@ -56,6 +61,26 @@ namespace cc {
 
       // Binary arithmetic operators.
       // All defined in mat4.inl
+
+    // Get/set components of the matrix.
+    inline Vec4<T> getForward    () const;
+    inline Vec4<T> getBackward   () const;
+    inline Vec4<T> getUp         () const;
+    inline Vec4<T> getDown       () const;
+    inline Vec4<T> getRight      () const;
+    inline Vec4<T> getLeft       () const;
+    inline Vec4<T> getTranslation() const;
+    inline void    setForward    ( const Vec4<T>& val );
+    inline void    setBackward   ( const Vec4<T>& val );
+    inline void    setUp         ( const Vec4<T>& val );
+    inline void    setDown       ( const Vec4<T>& val );
+    inline void    setRight      ( const Vec4<T>& val );
+    inline void    setLeft       ( const Vec4<T>& val );
+    inline void    setTranslation( const Vec4<T>& val );
+
+    // Other things.
+    inline void    transpose ();
+    inline Mat4<T> transposed() const;
 
     public:
       Vec4<T> data[4];

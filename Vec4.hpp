@@ -21,7 +21,9 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.2
+ *
+ * 2014-01-25 14:04
+ *  - Added unary negation operator.
  *
  * 2013-11-15 13:57
  *  - Initial version.
@@ -169,6 +171,11 @@ namespace cc {
       }
 
       // Unary stuff.
+      template<typename T>
+      inline friend Vec4<T> operator-( const Vec4<T>& vec ) {
+        return Vec4<T>(-vec.x, -vec.y, -vec.z, -vec.w);
+      }
+
       inline friend std::ostream& operator<<( std::ostream& os, const Vec4<T>& vec ) {
         os << "x[" << vec.x << "], y[" << vec.y << "], z[" << vec.z << "], w[" << vec.w << "]" << std::endl;
           return os;

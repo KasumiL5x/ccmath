@@ -19,17 +19,6 @@
   along with ccmath.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * @author  Daniel Green
- * @version 1.0.2
- *
- * 2013-12-31 22:52
- *  - Fixed missing iostream include.
- *
- * 2013-11-15 13:57
- *  - Initial version.
- */
-
 #include <iostream>
 #include <cassert>
 #include <cmath>
@@ -249,5 +238,16 @@ namespace cc {
       const float s = math::clamp<float>(0.0f, 1.0f, t);
       return Vec2<T>(math::lerp<T>(x, to.x, s), math::lerp<T>(y, to.y, s));
     }
+
+    template<typename T>
+    inline static Vec2<T> Vec2<T>::zero() {
+      return Vec2<T>(static_cast<T>(0));
+    }
+
+    template<typename T>
+    inline static Vec2<T> Vec2<T>::one() {
+      return Vec2<T>(static_cast<T>(1));
+    }
+
   } /* math */
 } /* cc */

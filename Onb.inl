@@ -19,14 +19,6 @@
   along with ccmath.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * @author  Daniel Green
- * @version 1.0.2
- *
- * 2013-11-15 13:57
- *  - Initial version.
- */
-
 #include <iostream>
 #include "Onb.hpp"
 #include "Constants.hpp"

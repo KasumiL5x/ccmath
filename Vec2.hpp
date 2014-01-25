@@ -21,7 +21,12 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.2
+ *
+ * 2014-01-25 17:16
+ *  - Added zero, one.
+ *
+ * 2013-12-31 22:52
+ *  - Fixed missing iostream include.
  *
  * 2013-11-15 13:57
  *  - Initial version.
@@ -75,6 +80,10 @@ namespace cc {
       inline Vec2<T> min         ( const Vec2<T>& rhs ) const;
       inline Vec2<T> max         ( const Vec2<T>& rhs ) const;
       inline Vec2<T> lerp        ( const Vec2<T>& to, const float& t ) const;
+
+      // Static stuff.
+      inline static Vec2<T> zero();
+      inline static Vec2<T> one();
 
     public:
       union {

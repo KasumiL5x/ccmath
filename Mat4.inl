@@ -19,14 +19,6 @@
   along with ccmath.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * @author  Daniel Green
- * @version 1.0.2
- *
- * 2013-11-15 13:57
- *  - Initial version.
- */
-
 #include <iostream>
 #include <cassert>
 
@@ -148,5 +140,110 @@ namespace cc {
       os << m.data[0] << m.data[1] << m.data[2] << m.data[3];
       return os;
     }
+
+    // Get/set components of the matrix.
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getForward() const {
+      return -data[2];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getBackward() const {
+      return data[2];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getUp() const {
+      return data[1];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getDown() const {
+      return -data[1];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getRight() const {
+      return data[0];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getLeft() const {
+      return -data[0];
+    }
+
+    template<typename T>
+    inline Vec4<T> Mat4<T>::getTranslation() const {
+      return data[3];
+    }
+
+    template<typename T>
+    inline void Mat4<T>::setForward( const Vec4<T>& val ) {
+      data[2] = -val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setBackward( const Vec4<T>& val ) {
+      data[2] = val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setUp( const Vec4<T>& val ) {
+      data[1] = val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setDown( const Vec4<T>& val ) {
+      data[1] = -val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setRight( const Vec4<T>& val ) {
+      data[0] = val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setLeft( const Vec4<T>& val ) {
+      data[0] = -val;
+    }
+
+    template<typename T>    
+    inline void Mat4<T>::setTranslation( const Vec4<T>& val ) {
+      data[3] = val;
+    }
+
+    template<typename T>
+    inline void Mat4<T>::transpose() {
+      const T x0 = data[0][0];
+      const T x1 = data[0][1];
+      const T x2 = data[0][2];
+      const T x3 = data[0][3];
+      const T y0 = data[1][0];
+      const T y1 = data[1][1];
+      const T y2 = data[1][2];
+      const T y3 = data[1][3];
+      const T z0 = data[2][0];
+      const T z1 = data[2][1];
+      const T z2 = data[2][2];
+      const T z3 = data[2][3];
+      const T w0 = data[3][0];
+      const T w1 = data[3][1];
+      const T w2 = data[3][2];
+      const T w3 = data[3][3];
+
+      data[0][0] = x0; data[0][1] = y0; data[0][2] = z0; data[0][3] = w0;
+      data[1][0] = x1; data[1][1] = y1; data[1][2] = z1; data[1][3] = w1;
+      data[2][0] = x2; data[2][1] = y2; data[2][2] = z2; data[2][3] = w2;
+      data[3][0] = x3; data[3][1] = y3; data[3][2] = z3; data[3][3] = w3;
+    }
+
+    template<typename T>
+    inline Mat4<T> Mat4<T>::transposed() const {
+      return Mat4<T>(data[0][0], data[1][0], data[2][0], data[3][0],
+                     data[0][1], data[1][1], data[2][1], data[3][1],
+                     data[0][2], data[1][2], data[2][2], data[3][2],
+                     data[0][3], data[1][3], data[2][3], data[3][3]);
+    }
+
   } /* math */
 } /* cc */

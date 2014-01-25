@@ -21,7 +21,9 @@
 
 /**
  * @author  Daniel Green
- * @version 1.0.2
+ *
+ * 2014-01-25 17:11
+ *  - Added zero, one, up, down, left, right, forward, and backward.
  *
  * 2013-11-15 13:57
  *  - Initial version.
@@ -72,6 +74,16 @@ namespace cc {
       inline Vec3<T> max         ( const Vec3<T>& rhs ) const;
       inline Vec3<T> lerp        ( const Vec3<T>& to, const float& t );
       inline Vec3<T> reflect     ( const Vec3<T>& direction ); // Where this vector is the position.
+
+      // Static stuff.
+      inline static Vec3<T> zero    ();
+      inline static Vec3<T> one     ();
+      inline static Vec3<T> up      ();
+      inline static Vec3<T> down    ();
+      inline static Vec3<T> left    ();
+      inline static Vec3<T> right   ();
+      inline static Vec3<T> forward ();
+      inline static Vec3<T> backward();
 
     public:
       union {
