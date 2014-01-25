@@ -171,7 +171,6 @@ namespace cc {
       }
 
       // Unary stuff.
-      template<typename T>
       inline friend Vec4<T> operator-( const Vec4<T>& vec ) {
         return Vec4<T>(-vec.x, -vec.y, -vec.z, -vec.w);
       }

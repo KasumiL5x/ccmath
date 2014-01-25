@@ -240,12 +240,12 @@ namespace cc {
     }
 
     template<typename T>
-    inline static Vec2<T> Vec2<T>::zero() {
+    inline Vec2<T> Vec2<T>::zero() {
       return Vec2<T>(static_cast<T>(0));
     }
 
     template<typename T>
-    inline static Vec2<T> Vec2<T>::one() {
+    inline Vec2<T> Vec2<T>::one() {
       return Vec2<T>(static_cast<T>(1));
     }
 
