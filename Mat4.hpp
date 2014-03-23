@@ -22,6 +22,9 @@
 /**
  * @author  Daniel Green
  *
+ * 2014-01-26 11:55
+ *  - Added determinant, inverse, and * operator w/ T.
+ * 
  * 2014-01-25 16:49
  *  - Added transpose and transposed functions.  How did I forget them before?!
  *
@@ -81,6 +84,8 @@ namespace cc {
     // Other things.
     inline void    transpose ();
     inline Mat4<T> transposed() const;
+    inline float   determinant() const;
+    inline void    invert();
 
     public:
       Vec4<T> data[4];

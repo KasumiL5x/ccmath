@@ -22,6 +22,9 @@
 /**
  * @author  Daniel Green
  *
+ * 2014-03-23 18:08
+ *  - Fixed orthographic function.  It also takes two extra parameters, [near] and [far].
+ * 
  * 2013-11-15 13:57
  *  - Initial version.
  */
@@ -30,7 +33,7 @@
 #include "Vec4.hpp"
 
 #ifndef __CC_MATH_MATRIXFUNC__
-#define	__CC_MATH_MATRIXFUNC__
+#define __CC_MATH_MATRIXFUNC__
 
 namespace cc {
   namespace math {
@@ -65,10 +68,12 @@ namespace cc {
      * @param[in] right  Right coordinate of the viewport.
      * @param[in] bottom Bottom coordinate of the viewport.
      * @param[in] top    Top coordinate of the viewport.
+     * @param[in] near   The near plane.
+     * @param[in] far    The far plane.
      * @return Orthographic projection matrix.
      */
     template<typename T>
-    inline Mat4<T> orthographic( const T& left, const T& right, const T& bottom, const T& top );
+    inline Mat4<T> orthographic( const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far );
 
     /**
      * Creates a frustum matrix.
@@ -125,5 +130,5 @@ namespace cc {
 
 #include "MatrixFunc.inl"
 
-#endif	/* __CC_MATH_MATRIXFUNC__ */
+#endif  /* __CC_MATH_MATRIXFUNC__ */
 

@@ -6,6 +6,13 @@
 # Changed/Fixed
 
 --------------
+ ccmath 1.0.4
+--------------
++ Added determinant, inverse, and * operator w/ T to Mat4.
++ Included necessary headers into Quaternion.
+# Fixed orthographic and changed it's parameters in MatrixFunc.
+
+--------------
  ccmath 1.0.3
 --------------
 - Removed changelog header from *.inl.

@@ -22,12 +22,18 @@
 /**
  * @author  Daniel Green
  *
+ * 2014-03-23
+ *  - Included Vec3 and Mat4 headers.
+ *
  * 2013-11-15 13:57
  *  - Initial version.
  */
 
 #ifndef __CC_MATH_QUATERNION__
 #define	__CC_MATH_QUATERNION__
+
+#include "Vec3.hpp"
+#include "Mat4.hpp"
 
 namespace cc {
   namespace math {
