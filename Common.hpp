@@ -97,7 +97,7 @@ namespace cc {
      * @return Smaller of the two given values.
      */
     template<typename T>
-    inline T min( T a, T b ) {
+    inline T minimum( T a, T b ) {
       return (a >= b) ? b : a;
     }
 
@@ -108,7 +108,7 @@ namespace cc {
      * @return Larger of the two given values.
      */
     template<typename T>
-    inline T max( T a, T b ) {
+    inline T maximum( T a, T b ) {
       return (a <= b) ? b : a;
     }
 
@@ -119,7 +119,7 @@ namespace cc {
      */
     template<typename T>
     inline T saturate( T value ) {
-      return max<T>(0.0, min<T>(1.0, value));
+      return maximum<T>(0.0, minimum<T>(1.0, value));
     }
 
     /**

@@ -225,12 +225,12 @@ namespace cc {
       return magnitude(*this - rhs).magnitude();
     }
     template<typename T>
-    inline Vec2<T> Vec2<T>::min( const Vec2<T>& rhs ) const {
-      return Vec2<T>(math::min<T>(x, rhs.x), math::min<T>(y, rhs.y));
+    inline Vec2<T> Vec2<T>::minimum( const Vec2<T>& rhs ) const {
+      return Vec2<T>(math::minimum<T>(x, rhs.x), math::minimum<T>(y, rhs.y));
     }
     template<typename T>
-    inline Vec2<T> Vec2<T>::max( const Vec2<T>& rhs ) const {
-      return Vec2<T>(math::max<T>(x, rhs.x), math::max<T>(y, rhs.y));
+    inline Vec2<T> Vec2<T>::maximum( const Vec2<T>& rhs ) const {
+      return Vec2<T>(math::maximum<T>(x, rhs.x), math::maximum<T>(y, rhs.y));
     }
 
     template<typename T>

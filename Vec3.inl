@@ -247,13 +247,13 @@ namespace cc {
     }
     
     template<typename T>
-    inline Vec3<T> Vec3<T>::min( const Vec3<T>& rhs ) const {
-      return Vec3<T>(math::min<T>(x, rhs.x), math::min<T>(y, rhs.y), math::min<T>(z, rhs.z));
+    inline Vec3<T> Vec3<T>::minimum( const Vec3<T>& rhs ) const {
+      return Vec3<T>(math::minimum<T>(x, rhs.x), math::minimum<T>(y, rhs.y), math::minimum<T>(z, rhs.z));
     }
     
     template<typename T>
-    inline Vec3<T> Vec3<T>::max( const Vec3<T>& rhs ) const {
-      return Vec3<T>(math::max<T>(x, rhs.x), math::max<T>(y, rhs.y), math::max<T>(z, rhs.z));
+    inline Vec3<T> Vec3<T>::maximum( const Vec3<T>& rhs ) const {
+      return Vec3<T>(math::maximum<T>(x, rhs.x), math::maximum<T>(y, rhs.y), math::maximum<T>(z, rhs.z));
     }
     
     template<typename T>

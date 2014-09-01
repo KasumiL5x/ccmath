@@ -70,8 +70,8 @@ namespace cc {
       inline Vec3<T> cross       ( const Vec3<T>& rhs ) const;
       inline T       distance    ( const Vec3<T>& rhs ) const;
       inline T       sqrDistance ( const Vec3<T>& rhs ) const;
-      inline Vec3<T> min         ( const Vec3<T>& rhs ) const;
-      inline Vec3<T> max         ( const Vec3<T>& rhs ) const;
+      inline Vec3<T> minimum     ( const Vec3<T>& rhs ) const;
+      inline Vec3<T> maximum     ( const Vec3<T>& rhs ) const;
       inline Vec3<T> lerp        ( const Vec3<T>& to, const float& t );
       inline Vec3<T> reflect     ( const Vec3<T>& direction ); // Where this vector is the position.
 
