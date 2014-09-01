@@ -6,11 +6,16 @@
 # Changed/Fixed
 
 --------------
+ ccmath 1.0.5
+--------------
+# Renamed min() and max() functions to minimum() and maximum() because WinAPI defines them... globally...
++ Included necessary headers into Quaternion.
+# Fixed orthographic and changed it's parameters in MatrixFunc.
+
+--------------
  ccmath 1.0.4
 --------------
 + Added determinant, inverse, and * operator w/ T to Mat4.
-+ Included necessary headers into Quaternion.
-# Fixed orthographic and changed it's parameters in MatrixFunc.
 
 --------------
  ccmath 1.0.3
