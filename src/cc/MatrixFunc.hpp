@@ -145,61 +145,7 @@ namespace cc {
 		 * @return True if the decomposition was successful, and false otherwise.
 		 */
 		template<typename T>
-		inline bool decompose( const Mat4<T>& mat, Vec3<T>* outPos, Quaternion<T>* outOrient, Vec3<T>* outScale )
-		{
-			if( !outPos || !outOrient || !outScale )
-			{
-				return false;
-			}
-
-			outPos->x = mat[3][0];
-			outPos->y = mat[3][1];
-			outPos->z = mat[3][2];
-
-			float xs = 0.0f;
-			float ys = 0.0f;
-			float zs = 0.0f;
-			if( math::sign(mat[0][0] * mat[0][1] * mat[0][2] * mat[0][3]) < 0 )
-			{
-				xs = -1.0f;
-			}
-			else
-			{
-				xs = 1.0f;
-			}
-			if( math::sign(mat[1][0] * mat[1][1] * mat[1][2] * mat[1][3]) < 0 )
-			{
-				ys = -1.0f;
-			}
-			else
-			{
-				ys = 1.0f;
-			}
-			if( math::sign(mat[2][0] * mat[2][1] * mat[2][2] * mat[2][3]) < 0 )
-			{
-				zs = -1.0f;
-			}
-			else
-			{
-				zs = 1.0f;
-			}
-			outScale->x = xs * sqrtf(mat[0][0] * mat[0][0] + mat[0][1] * mat[0][1] + mat[0][2] * mat[0][2]);
-			outScale->y = ys * sqrtf(mat[1][0] * mat[1][0] + mat[1][1] * mat[1][1] + mat[1][2] * mat[1][2]);
-			outScale->z = zs * sqrtf(mat[2][0] * mat[2][0] + mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2]);
-
-			if( math::equal(outScale->x, 0.0f) || math::equal(outScale->y, 0.0f) || math::equal(outScale->z, 0.0f) )
-			{
-				*outOrient = Quatf();
-				return false;
-			}
-
-			const Mat4f otherMat(mat[0][0] / outScale->x, mat[0][1] / outScale->x, mat[0][2] / outScale->x, 0.0f,
-													 mat[1][0] / outScale->y, mat[1][1] / outScale->y, mat[1][2] / outScale->y, 0.0f,
-													 mat[2][0] / outScale->z, mat[2][1] / outScale->z, mat[2][2] / outScale->z, 0.0f,
-													 0.0f, 0.0f, 0.0f, 1.0f);
-			*outOrient = Quatf::createFromMatrix(otherMat);
-			return true;
-		}
+		inline bool decompose( const Mat4<T>& mat, Vec3<T>* outPos, Quaternion<T>* outOrient, Vec3<T>* outScale );
   } /* math */
 } /* cc */
 
