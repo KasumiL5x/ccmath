@@ -50,10 +50,10 @@ namespace cc {
     class Quaternion {
     public:
       inline Quaternion();
-      inline Quaternion( const T& x, const T& y, const T& z );
-      inline Quaternion( const T& x, const T& y, const T& z, const T& w );
+      inline Quaternion( const T& xx, const T& yy, const T& zz );
+      inline Quaternion( const T& xx, const T& yy, const T& zz, const T& ww );
       inline Quaternion( const Vec3<T>& vec );
-      inline Quaternion( const Vec3<T>& vec, const T& w );
+      inline Quaternion( const Vec3<T>& vec, const T& ww );
 
       // Get the scalar component.
       inline T scalar() const;
@@ -98,10 +98,10 @@ namespace cc {
 
 
     public:
-      T _x;
-      T _y;
-      T _z;
-      T _w;
+      T x;
+      T y;
+      T z;
+      T w;
     };
   } /* math */
   
