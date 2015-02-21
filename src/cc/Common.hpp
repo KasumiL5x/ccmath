@@ -66,7 +66,7 @@ namespace cc {
      */
     template<typename T>
     inline T degreesToRadians( T degrees ) {
-			return degrees * DEG_TO_RAD;
+      return degrees * DEG_TO_RAD;
     }
 
     /**
@@ -81,7 +81,7 @@ namespace cc {
 
     /**
      * Clamps a value within a range.
-		 * @param[in] val The value to clamp.
+     * @param[in] val The value to clamp.
      * @param[in] min Minimum value.
      * @param[in] max Maximum value.
      * @return The clamped value.
@@ -285,17 +285,17 @@ namespace cc {
       return (F * length) / (extension * area);
     }
 
-		/**
-		 * Wraps the given angle in the given range.
-		 * @param[in] angle The angle to wrap.
-		 * @param[in] min   The lower-bound to wrap.
-		 * @param[in] max   The upper-bound to wrap.
-		 * @return Wrapped angle in the range [min, max].
-		 */
-		template<typename T>
-		inline T wrapAngle( T angle, T min, T max ) {
-			return fmodf(fmodf(angle - min, max - min) + (max - min), max - min) + min;
-		}
+    /**
+     * Wraps the given angle in the given range.
+     * @param[in] angle The angle to wrap.
+     * @param[in] min   The lower-bound to wrap.
+     * @param[in] max   The upper-bound to wrap.
+     * @return Wrapped angle in the range [min, max].
+    */
+    template<typename T>
+    inline T wrapAngle( T angle, T min, T max ) {
+      return fmodf(fmodf(angle - min, max - min) + (max - min), max - min) + min;
+    }
   } /* math */
 } /* cc */
 

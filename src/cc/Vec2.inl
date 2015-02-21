@@ -244,7 +244,7 @@ namespace cc {
 
     template<typename T>
     inline Vec2<T> Vec2<T>::lerp( const Vec2<T>& to, const float& t ) const {
-      const float s = math::clamp<float>(0.0f, 1.0f, t);
+      const float s = math::clamp<float>(t, 0.0f, 1.0f);
       return Vec2<T>(math::lerp<T>(x, to.x, s), math::lerp<T>(y, to.y, s));
     }
 
