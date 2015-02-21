@@ -48,7 +48,7 @@ namespace cc {
   namespace math {
 
     /**
-     * Fast inverse square root (1/sqrt X).  Popularized
+     * Fast inverse square root (1/sqrt X).
      */
    static float fastInvSqrt(float x) {
       float xhalf = 0.5f * x;
@@ -66,7 +66,7 @@ namespace cc {
      */
     template<typename T>
     inline T degreesToRadians( T degrees ) {
-      return degrees * static_cast<T>(PI) / static_cast<T>(180);;
+			return degrees * DEG_TO_RAD;
     }
 
     /**
@@ -76,18 +76,18 @@ namespace cc {
      */
     template<typename T>
     inline T radiansToDegrees( T radians ) {
-      return radians * static_cast<T>(180) / static_cast<T>(PI);
+      return radians * RAD_TO_DEG;
     }
 
     /**
      * Clamps a value within a range.
+		 * @param[in] val The value to clamp.
      * @param[in] min Minimum value.
      * @param[in] max Maximum value.
-     * @param[in] val The value to clamp.
      * @return The clamped value.
      */
     template<typename T>
-    inline T clamp( T min, T max, T val ) {
+    inline T clamp( T val, T min, T max ) {
       if( val < min ) {
         return min;
       }
@@ -284,6 +284,18 @@ namespace cc {
       // Young's = F*L / (E*A)
       return (F * length) / (extension * area);
     }
+
+		/**
+		 * Wraps the given angle in the given range.
+		 * @param[in] angle The angle to wrap.
+		 * @param[in] min   The lower-bound to wrap.
+		 * @param[in] max   The upper-bound to wrap.
+		 * @return Wrapped angle in the range [min, max].
+		 */
+		template<typename T>
+		inline T wrapAngle( T angle, T min, T max ) {
+			return fmodf(fmodf(angle - min, max - min) + (max - min), max - min) + min;
+		}
   } /* math */
 } /* cc */
 
