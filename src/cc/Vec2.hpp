@@ -30,15 +30,6 @@
 
 /**
  * @author  Daniel Green
- *
- * 2014-01-25 17:16
- *  - Added zero, one.
- *
- * 2013-12-31 22:52
- *  - Fixed missing iostream include.
- *
- * 2013-11-15 13:57
- *  - Initial version.
  */
 
 #ifndef __CC_MATH_VEC2__
@@ -67,6 +58,9 @@ namespace cc {
       inline Vec2<T>& operator/=( const Vec2<T>& vec );
 
       // Binary arithmetic operators.
+      // All defined in vec2.inl.
+
+      // Binary comparison operators.
       // All defined in vec2.inl.
 
       // Unary constant operators.

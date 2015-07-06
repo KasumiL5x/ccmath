@@ -167,6 +167,17 @@ namespace cc {
     inline Vec2<T> operator/( const Vec2<T>& lhs, const T& rhs ) {
       return Vec2<T>(lhs.x / rhs, lhs.y / rhs);
     }
+
+    // Binary comparison operators.
+    template<typename T>
+    inline bool operator==( const Vec2<T>& lhs, const Vec2<T>& rhs ) {
+    	return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+    }
+
+    template<typename T>
+    inline bool operator !=( const Vec2<T>& lhs, const Vec2<T>& rhs ) {
+    	return (lhs.x != rhs.x) && (lhs.y != rhs.y);
+    }
     
     // Unary constant operators.
     template<typename T>
