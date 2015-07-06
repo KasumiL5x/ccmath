@@ -176,7 +176,7 @@ namespace cc {
 
     template<typename T>
     inline bool operator !=( const Vec2<T>& lhs, const Vec2<T>& rhs ) {
-    	return (lhs.x != rhs.x) && (lhs.y != rhs.y);
+    	return (lhs.x != rhs.x) || (lhs.y != rhs.y);
     }
     
     // Unary constant operators.
