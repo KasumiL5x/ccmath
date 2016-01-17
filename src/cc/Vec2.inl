@@ -226,7 +226,7 @@ namespace cc {
     }
     template<typename T>
     inline bool Vec2<T>::equalTo( const Vec2<T>& rhs ) const {
-      return sqrMagnitude(*this - rhs) < static_cast<T>(EPSILON);
+      return (*this - rhs).sqrMagnitude() < static_cast<T>(EPSILON);
     }
     template<typename T>
     inline T Vec2<T>::dot( const Vec2<T>& rhs ) const {
