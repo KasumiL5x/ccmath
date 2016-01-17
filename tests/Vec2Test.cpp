@@ -1,234 +1,239 @@
 #include "CppUnitTest.h"
 #include <cc/Vec2.hpp>
 #include "Common.hpp"
+#include "Random.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 TEST_CLASS(Vec2Test) {
+private:
+	Random<float, int> rnd;
+
+	cc::Vec2f randomVector() {
+		return cc::Vec2f(rnd.nextReal(), rnd.nextReal());
+	}
+
 public:
 	TEST_METHOD(Constructor) {
-		// blank constructor should construct to zero
-		const cc::Vec2f blankVector;
-		Assert::AreEqual(0.0f, blankVector.x, TOLERANCE);
-		Assert::AreEqual(0.0f, blankVector.y, TOLERANCE);
+		const cc::Vec2f blank;
+		Assert::AreEqual(0.0f, blank.x, TOLERANCE);
+		Assert::AreEqual(0.0f, blank.y, TOLERANCE);
 
-		// single argument sets x and y
-		const cc::Vec2f singleArg(1.0f);
-		Assert::AreEqual(1.0f, singleArg.x, TOLERANCE);
-		Assert::AreEqual(1.0f, singleArg.y, TOLERANCE);
+		const float rnd_a = rnd.nextReal();
+		const cc::Vec2f single(rnd_a);
+		Assert::AreEqual(rnd_a, single.x, TOLERANCE);
+		Assert::AreEqual(rnd_a, single.y, TOLERANCE);
 
-		// double argument sets x and y
-		const cc::Vec2f doubleArg(1.0f, 2.0f);
-		Assert::AreEqual(1.0f, doubleArg.x, TOLERANCE);
-		Assert::AreEqual(2.0f, doubleArg.y, TOLERANCE);
+		const float rnd_b = rnd.nextReal();
+		const cc::Vec2f doubleVec(rnd_a, rnd_b);
+		Assert::AreEqual(rnd_a, doubleVec.x, TOLERANCE);
+		Assert::AreEqual(rnd_b, doubleVec.y, TOLERANCE);
 
-		// copy constructor
-		const cc::Vec2f copy(doubleArg);
-		Assert::AreEqual(1.0f, copy.x, TOLERANCE);
-		Assert::AreEqual(2.0f, copy.y, TOLERANCE);
+		const cc::Vec2f copy(doubleVec);
+		Assert::AreEqual(doubleVec.x, copy.x, TOLERANCE);
+		Assert::AreEqual(doubleVec.y, copy.y, TOLERANCE);
 	}
 
 	TEST_METHOD(Accessors) {
-		cc::Vec2f vec(1.0f, 2.0f);
-		// access with []
-		Assert::AreEqual(1.0f, vec[0], TOLERANCE);
-		Assert::AreEqual(2.0f, vec[1], TOLERANCE);
-		// access with ()
-		Assert::AreEqual(1.0f, vec(0), TOLERANCE);
-		Assert::AreEqual(2.0f, vec(1), TOLERANCE);
-		
-		// access w/ const []
-		const cc::Vec2f constVec(1.0f, 2.0f);
-		const float val0 = constVec[0];
-		const float val1 = constVec[1];
-		Assert::AreEqual(1.0f, val0, TOLERANCE);
-		Assert::AreEqual(2.0f, val1, TOLERANCE);
+		const float rnd_a = rnd.nextReal();
+		const float rnd_b = rnd.nextReal();
+
+		const cc::Vec2f vec1(rnd_a, rnd_b);
+		Assert::AreEqual(rnd_a, vec1[0], TOLERANCE);
+		Assert::AreEqual(rnd_b, vec1[1], TOLERANCE);
+		Assert::AreEqual(rnd_a, vec1(0), TOLERANCE);
+		Assert::AreEqual(rnd_b, vec1(1), TOLERANCE);
+
+		cc::Vec2f vec2(rnd_a, rnd_b);
+		Assert::AreEqual(rnd_a, vec2[0], TOLERANCE);
+		Assert::AreEqual(rnd_b, vec2[1], TOLERANCE);
+		Assert::AreEqual(rnd_a, vec2(0), TOLERANCE);
+		Assert::AreEqual(rnd_b, vec2(1), TOLERANCE);
 	}
 
 	TEST_METHOD(UnaryOperators) {
-		const cc::Vec2f a(1.0f, 2.0f);
+		const cc::Vec2f vec = randomVector();
 
 		// =
-		cc::Vec2f equals;
-		equals = a;
-		Assert::AreEqual(1.0f, equals.x, TOLERANCE);
-		Assert::AreEqual(2.0f, equals.y, TOLERANCE);
+		cc::Vec2f equals; equals = vec;
+		Assert::AreEqual(vec.x, equals.x, TOLERANCE);
+		Assert::AreEqual(vec.y, equals.y, TOLERANCE);
 
 		// +=
-		cc::Vec2f plusEquals;
-		plusEquals += a;
-		Assert::AreEqual(1.0f, plusEquals.x, TOLERANCE);
-		Assert::AreEqual(2.0f, plusEquals.y, TOLERANCE);
+		cc::Vec2f plusEquals; plusEquals += vec;
+		Assert::AreEqual(vec.x, plusEquals.x, TOLERANCE);
+		Assert::AreEqual(vec.y, plusEquals.y, TOLERANCE);
 
 		// -=
-		cc::Vec2f minusEquals;
-		minusEquals -= a;
-		Assert::AreEqual(-1.0f, minusEquals.x, TOLERANCE);
-		Assert::AreEqual(-2.0f, minusEquals.y, TOLERANCE);
+		cc::Vec2f minusEquals; minusEquals -= vec;
+		Assert::AreEqual(-vec.x, minusEquals.x, TOLERANCE);
+		Assert::AreEqual(-vec.y, minusEquals.y, TOLERANCE);
 
 		// *=
-		cc::Vec2f mulEquals(3.0f);
-		mulEquals *= a;
-		Assert::AreEqual(3.0f, mulEquals.x, TOLERANCE);
-		Assert::AreEqual(6.0f, mulEquals.y, TOLERANCE);
+		cc::Vec2f mulEquals(3.0f); mulEquals *= vec;
+		Assert::AreEqual(vec.x*3.0f, mulEquals.x, TOLERANCE);
+		Assert::AreEqual(vec.y*3.0f, mulEquals.y, TOLERANCE);
 
 		// /=
-		cc::Vec2f divEquals(3.0f);
-		divEquals /= a;
-		Assert::AreEqual(3.0f, divEquals.x, TOLERANCE);
-		Assert::AreEqual(1.5f, divEquals.y, TOLERANCE);
+		cc::Vec2f divEquals(3.0f); divEquals /= vec;
+		Assert::AreEqual(3.0f/vec.x, divEquals.x, TOLERANCE);
+		Assert::AreEqual(3.0f/vec.y, divEquals.y, TOLERANCE);
 	}
 
 	TEST_METHOD(BinaryOperators) {
-		const cc::Vec2f vec1(1.0f, 2.0f);
-		const cc::Vec2f vec2(3.0f, 4.0f);
-		const float scalar1 = 5.0f;
+		const cc::Vec2f vec1 = randomVector();
+		const cc::Vec2f vec2 = randomVector();
+		const float scalar = rnd.nextReal();
 
 		// vec + vec
-		const cc::Vec2f vpv = vec1 + vec2;
-		Assert::AreEqual(4.0f, vpv.x, TOLERANCE);
-		Assert::AreEqual(6.0f, vpv.y, TOLERANCE);
-
+		const cc::Vec2f vecPlusVec = vec1 + vec2;
+		Assert::AreEqual(vec1.x+vec2.x, vecPlusVec.x, TOLERANCE);
+		Assert::AreEqual(vec1.y+vec2.y, vecPlusVec.y, TOLERANCE);
 		// scalar + vec
-		const cc::Vec2f spv = scalar1 + vec1;
-		Assert::AreEqual(6.0f, spv.x, TOLERANCE);
-		Assert::AreEqual(7.0f, spv.y, TOLERANCE);
-
+		const cc::Vec2f sclPlusVec = scalar + vec1;
+		Assert::AreEqual(scalar+vec1.x, sclPlusVec.x, TOLERANCE);
+		Assert::AreEqual(scalar+vec1.y, sclPlusVec.y, TOLERANCE);
 		// vec + scalar
-		const cc::Vec2f vps = vec1 + scalar1;
-		Assert::AreEqual(6.0f, vps.x, TOLERANCE);
-		Assert::AreEqual(7.0f, vps.y, TOLERANCE);
+		const cc::Vec2f vecPlusScl = vec1 + scalar;
+		Assert::AreEqual(vec1.x+scalar, vecPlusScl.x, TOLERANCE);
+		Assert::AreEqual(vec1.y+scalar, vecPlusScl.y, TOLERANCE);
 
 		// vec - vec
-		const cc::Vec2f vmv = vec1 - vec2;
-		Assert::AreEqual(-2.0f, vmv.x, TOLERANCE);
-		Assert::AreEqual(-2.0f, vmv.y, TOLERANCE);
-
+		const cc::Vec2f vecMinVec = vec1 - vec2;
+		Assert::AreEqual(vec1.x-vec2.x, vecMinVec.x, TOLERANCE);
+		Assert::AreEqual(vec1.y-vec2.y, vecMinVec.y, TOLERANCE);
 		// scalar - vec
-		const cc::Vec2f smv = scalar1 - vec1;
-		Assert::AreEqual(4.0f, smv.x, TOLERANCE);
-		Assert::AreEqual(3.0f, smv.y, TOLERANCE);
-
+		const cc::Vec2f sclMinVec = scalar - vec1;
+		Assert::AreEqual(scalar-vec1.x, sclMinVec.x, TOLERANCE);
+		Assert::AreEqual(scalar-vec1.y, sclMinVec.y, TOLERANCE);
 		// vec - scalar
-		const cc::Vec2f vms = vec1 - scalar1;
-		Assert::AreEqual(-4.0f, vms.x, TOLERANCE);
-		Assert::AreEqual(-3.0f, vms.y, TOLERANCE);
+		const cc::Vec2f vecMinScl = vec1 - scalar;
+		Assert::AreEqual(vec1.x-scalar, vecMinScl.x, TOLERANCE);
+		Assert::AreEqual(vec1.y-scalar, vecMinScl.y, TOLERANCE);
 
 		// vec * vec
-		const cc::Vec2f vmulv = vec1 * vec2;
-		Assert::AreEqual(3.0f, vmulv.x, TOLERANCE);
-		Assert::AreEqual(8.0f, vmulv.y, TOLERANCE);
-
+		const cc::Vec2f vecMulVec = vec1 * vec2;
+		Assert::AreEqual(vec1.x*vec2.x, vecMulVec.x, TOLERANCE);
+		Assert::AreEqual(vec1.y*vec2.y, vecMulVec.y, TOLERANCE);
 		// scalar * vec
-		const cc::Vec2f smulv = scalar1 * vec1;
-		Assert::AreEqual(5.0f, smulv.x, TOLERANCE);
-		Assert::AreEqual(10.0f, smulv.y, TOLERANCE);
-
+		const cc::Vec2f sclMulVec = scalar * vec1;
+		Assert::AreEqual(scalar*vec1.x, sclMulVec.x, TOLERANCE);
+		Assert::AreEqual(scalar*vec1.y, sclMulVec.y, TOLERANCE);
 		// vec * scalar
-		const cc::Vec2f vmuls = vec1 * scalar1;
-		Assert::AreEqual(5.0f, vmuls.x, TOLERANCE);
-		Assert::AreEqual(10.0f, vmuls.y, TOLERANCE);
+		const cc::Vec2f vecMulScl = vec1 * scalar;
+		Assert::AreEqual(vec1.x*scalar, vecMulScl.x, TOLERANCE);
+		Assert::AreEqual(vec1.y*scalar, vecMulScl.y, TOLERANCE);
 
 		// vec / vec
-		const cc::Vec2f vdv = vec1 / vec2;
-		Assert::AreEqual(0.33f, vdv.x, TOLERANCE);
-		Assert::AreEqual(0.5f, vdv.y, TOLERANCE);
-
+		const cc::Vec2f vecDivVec = vec1 / vec2;
+		Assert::AreEqual(vec1.x/vec2.x, vecDivVec.x, TOLERANCE);
+		Assert::AreEqual(vec1.y/vec2.y, vecDivVec.y, TOLERANCE);
 		// scalar / vec
-		const cc::Vec2f sdv = scalar1 / vec1;
-		Assert::AreEqual(5.0f, sdv.x, TOLERANCE);
-		Assert::AreEqual(2.5f, sdv.y, TOLERANCE);
-
+		const cc::Vec2f sclDivVec = scalar / vec1;
+		Assert::AreEqual(scalar/vec1.x, sclDivVec.x, TOLERANCE);
+		Assert::AreEqual(scalar/vec1.y, sclDivVec.y, TOLERANCE);
 		// vec / scalar
-		const cc::Vec2f vds = vec1 / scalar1;
-		Assert::AreEqual(0.2f, vds.x, TOLERANCE);
-		Assert::AreEqual(0.4f, vds.y, TOLERANCE);
+		const cc::Vec2f vecDivScl = vec1 / scalar;
+		Assert::AreEqual(vec1.x/scalar, vecDivScl.x, TOLERANCE);
+		Assert::AreEqual(vec1.y/scalar, vecDivScl.y, TOLERANCE);
 	}
 
 	TEST_METHOD(BinaryComparisonOperators) {
-		const bool equal = cc::Vec2f(1.0f, 2.0f) == cc::Vec2f(1.0f, 2.0f);
+		const cc::Vec2f a = cc::Vec2f(1.0f, 2.0f);
+		const cc::Vec2f b = cc::Vec2f(2.0f, 3.0f);
+		const bool equal = a == a;
 		Assert::IsTrue(equal);
 
-		const bool notEqual = cc::Vec2f(1.0f, 2.0f) != cc::Vec2f(3.0f, 4.0f);
+		const bool notEqual = a != b;
 		Assert::IsTrue(notEqual);
 	}
 
 	TEST_METHOD(UnaryConstantOperators) {
-		const cc::Vec2f neg = -cc::Vec2f(1.0f, 2.0f);
-		Assert::AreEqual(neg.x, -1.0f, TOLERANCE);
-		Assert::AreEqual(neg.y, -2.0f, TOLERANCE);
+		const cc::Vec2f vec = randomVector();
+		const cc::Vec2f neg = -vec;
+		Assert::AreEqual(-vec.x, neg.x, TOLERANCE);
+		Assert::AreEqual(-vec.y, neg.y, TOLERANCE);
 	}
 
-	TEST_METHOD(Other) {
-		// http://www.wolframalpha.com/input/?i=vector+%7B1.0%2C+2.0%7D
+	TEST_METHOD(Magnitude) {
+		const cc::Vec2f vec(1.0f, 2.0f);
+		Assert::AreEqual(2.23607f, vec.magnitude(), TOLERANCE);
+		Assert::AreEqual(5.0f, vec.sqrMagnitude(), TOLERANCE);
+	}
+
+	TEST_METHOD(Normalize) {
 		const cc::Vec2f vec(1.0f, 2.0f);
 
-		// magnitude
-		Assert::AreEqual(2.23607f, vec.magnitude(), TOLERANCE);
+		cc::Vec2f nrm1 = vec; nrm1.normalize();
+		Assert::AreEqual(0.447214f, nrm1.x, TOLERANCE);
+		Assert::AreEqual(0.894427f, nrm1.y, TOLERANCE);
 
-		// square magnitude
-		Assert::AreEqual(5.0f, vec.sqrMagnitude(), TOLERANCE);
+		const cc::Vec2f nrm2 = vec.normalized();
+		Assert::AreEqual(0.447214f, nrm2.x, TOLERANCE);
+		Assert::AreEqual(0.894427f, nrm2.y, TOLERANCE);
+	}
 
-		// normalize
-		cc::Vec2f normalizeMe = vec;
-		normalizeMe.normalize();
-		Assert::AreEqual(0.447214f, normalizeMe.x, TOLERANCE);
-		Assert::AreEqual(0.894427f, normalizeMe.y, TOLERANCE);
+	TEST_METHOD(Equality) {
+		const cc::Vec2f a(1.0f, 2.0f);
+		const cc::Vec2f b(1.0f, 2.0f);
+		const bool equal = a.equalTo(b);
+		Assert::IsTrue(equal);
+	}
 
-		// normalized
-		const cc::Vec2f normalized = vec.normalized();
-		Assert::AreEqual(0.447214f, normalized.x, TOLERANCE);
-		Assert::AreEqual(0.894427f, normalized.y, TOLERANCE);
-
-		// equalTo
-		const bool equalTo = vec.equalTo(cc::Vec2f(1.0f, 2.0f));
-		Assert::IsTrue(equalTo);
-
-		// dot product (http://www.wolframalpha.com/input/?i=vector%7B1.0%2C+2.0%7D+DOT+vector%7B3.0%2C+4.0%7D)
+	TEST_METHOD(Dot) {
+		const cc::Vec2f vec(1.0f, 2.0f);
 		const float dot = vec.dot(cc::Vec2f(3.0f, 4.0f));
 		Assert::AreEqual(11.0f, dot, TOLERANCE);
+	}
 
-		// cross3d
+	TEST_METHOD(Cross) {
 		Logger::WriteMessage("TODO: Vec2::cross3d()");
-
-		// cross2d
 		Logger::WriteMessage("TODO: Vec2::cross2d()");
+	}
 
-		// distance
+	TEST_METHOD(Distance) {
+		const cc::Vec2f vec(1.0f, 2.0f);
 		const float distance = vec.distance(cc::Vec2f(3.0f, 4.0f));
 		Assert::AreEqual(2.82843f, distance, TOLERANCE);
-
-		// square distance
 		const float sqrDistance = vec.sqrDistance(cc::Vec2f(3.0f, 4.0f));
 		Assert::AreEqual(8.0f, sqrDistance, TOLERANCE);
+	}
 
-		// minimum
-		const cc::Vec2f min = vec.minimum(cc::Vec2f(-1.0f, 4.0f));
-		Assert::AreEqual(-1.0f, min.x, TOLERANCE);
+	TEST_METHOD(MinMax) {
+		const cc::Vec2f small(1.0f, 2.0f);
+		const cc::Vec2f big(10.0f, 11.0f);
+
+		const cc::Vec2f min = small.minimum(big);
+		Assert::AreEqual(1.0f, min.x, TOLERANCE);
 		Assert::AreEqual(2.0f, min.y, TOLERANCE);
 
-		// maximum
-		const cc::Vec2f max = vec.maximum(cc::Vec2f(-1.0f, 4.0f));
-		Assert::AreEqual(1.0f, max.x, TOLERANCE);
-		Assert::AreEqual(4.0f, max.y, TOLERANCE);
+		const cc::Vec2f max = small.maximum(big);
+		Assert::AreEqual(10.0f, max.x, TOLERANCE);
+		Assert::AreEqual(11.0f, max.y, TOLERANCE);
+	}
 
-		// lerp
-		const cc::Vec2f zeroLerp = vec.lerp(cc::Vec2f(3.0f, 4.0f), 0.0f);
-		Assert::AreEqual(zeroLerp.x, 1.0f, TOLERANCE);
-		Assert::AreEqual(zeroLerp.y, 2.0f, TOLERANCE);
-		const cc::Vec2f halfLerp = vec.lerp(cc::Vec2f(3.0f, 4.0f), 0.5f);
-		Assert::AreEqual(2.0f, halfLerp.x, TOLERANCE);
-		Assert::AreEqual(3.0f, halfLerp.y, TOLERANCE);
-		const cc::Vec2f oneLerp = vec.lerp(cc::Vec2f(3.0f, 4.0f), 1.0f);
-		Assert::AreEqual(oneLerp.x, 3.0f, TOLERANCE);
-		Assert::AreEqual(oneLerp.y, 4.0f, TOLERANCE);
+	TEST_METHOD(Lerp) {
+		const cc::Vec2f a(0.0f, 0.0f);
+		const cc::Vec2f b(5.0f, 10.0f);
 
-		// zero
+		const cc::Vec2f zero = a.lerp(b, 0.0f);
+		Assert::AreEqual(a.x, zero.x, TOLERANCE);
+		Assert::AreEqual(a.y, zero.y, TOLERANCE);
+
+		const cc::Vec2f half = a.lerp(b, 0.5f);
+		Assert::AreEqual(2.5f, half.x, TOLERANCE);
+		Assert::AreEqual(5.0f, half.y, TOLERANCE);
+
+		const cc::Vec2f one = a.lerp(b, 1.0f);
+		Assert::AreEqual(b.x, one.x, TOLERANCE);
+		Assert::AreEqual(b.y, one.y, TOLERANCE);
+	}
+
+	TEST_METHOD(Defaults) {
 		const cc::Vec2f zero = cc::Vec2f::zero();
 		Assert::AreEqual(0.0f, zero.x, TOLERANCE);
 		Assert::AreEqual(0.0f, zero.y, TOLERANCE);
 
-		// one
 		const cc::Vec2f one = cc::Vec2f::one();
 		Assert::AreEqual(1.0f, one.x, TOLERANCE);
 		Assert::AreEqual(1.0f, one.y, TOLERANCE);
