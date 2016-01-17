@@ -83,6 +83,12 @@ namespace cc {
       return (&x)[index];
     }
 
+		template<typename T>
+		inline const T& Vec3<T>::operator()( unsigned int index ) const {
+      assert(index < 3);
+      return (&x)[index];
+		}
+
     // Unary arithmetic operators.
     template<typename T>
     inline Vec3<T>& Vec3<T>::operator=( const Vec3<T>& vec ) {
@@ -266,7 +272,7 @@ namespace cc {
     }
     
     template<typename T>
-    inline Vec3<T> Vec3<T>::lerp( const Vec3<T>& to, const float& t ) {
+    inline Vec3<T> Vec3<T>::lerp( const Vec3<T>& to, const float& t ) const {
       const float s = clamp<float>(t, 0.0f, 1.0f);
       return Vec3<T>(math::lerp<T>(x, to.x, s), math::lerp<T>(y, to.y, s), math::lerp<T>(z, to.z, s));
     }

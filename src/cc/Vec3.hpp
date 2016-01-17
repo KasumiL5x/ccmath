@@ -55,6 +55,7 @@ namespace cc {
       inline T&       operator[]( unsigned int index );
       inline const T& operator[]( unsigned int index ) const;
       inline T&       operator()( unsigned int index );
+			inline const T& operator()( unsigned int index ) const;
 
       // Unary arithmetic operators.
       inline Vec3<T>& operator= ( const Vec3<T>& vec );
@@ -81,7 +82,7 @@ namespace cc {
       inline T       sqrDistance ( const Vec3<T>& rhs ) const;
       inline Vec3<T> minimum     ( const Vec3<T>& rhs ) const;
       inline Vec3<T> maximum     ( const Vec3<T>& rhs ) const;
-      inline Vec3<T> lerp        ( const Vec3<T>& to, const float& t );
+      inline Vec3<T> lerp        ( const Vec3<T>& to, const float& t ) const;
       inline Vec3<T> reflect     ( const Vec3<T>& direction ); // Where this vector is the position.
 
       // Static stuff.

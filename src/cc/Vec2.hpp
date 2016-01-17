@@ -49,6 +49,7 @@ namespace cc {
       inline T&       operator[]( unsigned int index );
       inline const T& operator[]( const unsigned int index ) const;
       inline T&       operator()( unsigned int index );
+			inline const T& operator()( unsigned int index ) const;
 
       // Unary arithmetic operators.
       inline Vec2<T>& operator= ( const Vec2<T>& vec );

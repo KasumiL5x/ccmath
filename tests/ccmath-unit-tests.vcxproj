@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vec2Test.cpp" />
+    <ClCompile Include="Vec3Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
+    <ClInclude Include="Random.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0389C3A0-338B-48C2-B406-A42F6B22E4D4}</ProjectGuid>

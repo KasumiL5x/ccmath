@@ -79,6 +79,12 @@ namespace cc {
       return (&x)[index];
     }
 
+		template<typename T>
+		inline const T& Vec2<T>::operator()( unsigned int index ) const {
+      assert(index < 2);
+      return (&x)[index];
+		}
+
     // Unary arithmetic operators.
     template<typename T>
     inline Vec2<T>& Vec2<T>::operator=( const Vec2<T>& vec ) {
