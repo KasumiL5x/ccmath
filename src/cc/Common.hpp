@@ -140,17 +140,6 @@ namespace cc {
     }
 
     /**
-     * Returns a random number within a given range.
-     * @param[in] min Minimum value to return.
-     * @param[in] max Maximum value to return.
-     * @return Random value within the given range.
-     */
-    template<typename T>
-    inline T randRange( T min, T max ) {
-      return min + ((T)rand() / RAND_MAX) * (max - min);
-    }
-
-    /**
      * Returns the sign of a value.
      * @param[in] val Value to compute the sign of.
      * @return Returns 1 if the value is positive; otherwise returns -1.
