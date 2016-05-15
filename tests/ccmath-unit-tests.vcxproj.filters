@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="Vec2Test.cpp" />
     <ClCompile Include="Vec3Test.cpp" />
+    <ClCompile Include="RandomTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp" />

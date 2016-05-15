@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="RandomTest.cpp" />
     <ClCompile Include="Vec2Test.cpp" />
     <ClCompile Include="Vec3Test.cpp" />
   </ItemGroup>

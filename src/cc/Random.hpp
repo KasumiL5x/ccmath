@@ -18,21 +18,40 @@ namespace cc {
 			~Random() {
 			}
 
+			/**
+			 * Returns a uniformly random RealType in the default range of std::uniform_real_distribution<RealType>.
+			 */
 			RealType nextReal() {
 				std::uniform_real_distribution<RealType> dist;
 				return dist(_mt);
 			}
 
+			/**
+			 * Returns a uniformly random ranged RealType.
+			 * Returns a ranged random RealType.
+			 * @param[in] min  Minimum possible RealType.
+			 * @param[in] max Maximum possible RealType.
+			 * @returns RealType in the range [min,max).
+			 */
 			RealType nextReal( const RealType min, const RealType max ) {
 				std::uniform_real_distribution<RealType> dist(min, max);
 				return dist(_mt);
 			}
 
+			/**
+			 * Returns a uniformly random IntType in the default range of std::uniform_int_distribution<IntType>.
+			 */
 			IntType nextInt() {
 				std::uniform_int_distribution<IntType> dist;
 				return dist(_mt);
 			}
 
+			/**
+			 * Returns a uniformly random ranged IntType.
+			 * @param[in] min Minimum possible IntType.
+			 * @param[in] max Maximum possible IntType.
+			 * @returns RealType in the range [min, max].
+			 */
 			IntType nextInt( const IntType min, const IntType max ) {
 				std::uniform_int_distribution<IntType> dist(min, max);
 				return dist(_mt);
