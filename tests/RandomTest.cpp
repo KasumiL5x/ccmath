@@ -6,6 +6,26 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 TEST_CLASS(RandomTest) {
 public:
+	TEST_METHOD(Statics) {
+		const int MIN = -1000;
+		const int MAX = 1000;
+		for( int i = 0; i < 1000; ++i ) {
+			const int val = cc::math::Random<float, int>::rangedInt(MIN, MAX);
+			if( val < MIN || val > MAX ) {
+				Assert::Fail(L"Random::rangedInt result out of range.\n");
+			}
+		}
+
+		const int MIN_F = -1000.0f;
+		const int MAX_F = 1000.0f;
+		for( int i = 0; i < 1000; ++i ) {
+			const float val = cc::math::Random<float, int>::rangedReal(MIN_F, MAX_F);
+			if( val < MIN_F || val > MAX_F ) {
+				Assert::Fail(L"Random::rangedReal result out of range.\n");
+			}
+		}
+	}
+
 	TEST_METHOD(Ranges) {
 		// ranged floats and ints
 		cc::math::Random<float, int> RandFloatInt;

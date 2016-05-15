@@ -57,6 +57,26 @@ namespace cc {
 				return dist(_mt);
 			}
 
+			/**
+			 * Same as Random::nextReal(min, max), but static.
+			 */
+			static RealType rangedReal( const RealType min, const RealType max ) {
+				std::random_device dev;
+				std::mt19937 mt(dev());
+				std::uniform_real_distribution<RealType> dist;
+				return dist(mt);
+			}
+
+			/**
+			 * Same as Random::nextInt(min, max), but static.
+			 */
+			static IntType rangedInt( const IntType min, const IntType max ) {
+				std::random_device dev;
+				std::mt19937 mt(dev());
+				std::uniform_int_distribution<IntType> dist;
+				return dist(mt);
+			}
+
 		private:
 			std::mt19937 _mt;
 		};
