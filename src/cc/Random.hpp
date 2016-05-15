@@ -63,7 +63,7 @@ namespace cc {
 			static RealType rangedReal( const RealType min, const RealType max ) {
 				std::random_device dev;
 				std::mt19937 mt(dev());
-				std::uniform_real_distribution<RealType> dist;
+				std::uniform_real_distribution<RealType> dist(min, max);
 				return dist(mt);
 			}
 
@@ -73,7 +73,7 @@ namespace cc {
 			static IntType rangedInt( const IntType min, const IntType max ) {
 				std::random_device dev;
 				std::mt19937 mt(dev());
-				std::uniform_int_distribution<IntType> dist;
+				std::uniform_int_distribution<IntType> dist(min, max);
 				return dist(mt);
 			}
 
