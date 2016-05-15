@@ -6,6 +6,5 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
-    <ClInclude Include="Random.hpp" />
   </ItemGroup>
 </Project>

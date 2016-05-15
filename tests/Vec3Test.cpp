@@ -1,13 +1,13 @@
 #include "CppUnitTest.h"
 #include <cc/Vec3.hpp>
 #include "Common.hpp"
-#include "Random.hpp"
+#include <cc/Random.hpp>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 TEST_CLASS(Vec3Test) {
 private:
-	Random<float, int> rnd;
+	cc::math::Random<float, int> rnd;
 
 	cc::Vec3f randomVector() {
 		return cc::Vec3f(rnd.nextReal(), rnd.nextReal(), rnd.nextReal());
