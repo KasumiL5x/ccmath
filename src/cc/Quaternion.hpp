@@ -55,6 +55,8 @@ namespace cc {
       static Quaternion<T> createFromMatrix( const Mat4<T>& m );
       // Create a matrix from a quaternion.
       static Mat4<T> createMatrixFromQuaternion( const Quaternion<T>& q );
+			// Lerp between two quaternions.
+			static Quaternion<T> lerp( const Quaternion<T>& q1, const Quaternion<T>& q2, float amount );
 
 
     public:

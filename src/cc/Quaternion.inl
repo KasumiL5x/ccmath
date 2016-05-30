@@ -243,6 +243,31 @@ namespace cc {
       return c;
     }
 
+		template<typename T>
+		Quaternion<T> Quaternion<T>::lerp( const Quaternion<T>& q1, const Quaternion<T>& q2, float amount ) {
+			const float num = 1.0f - amount;
+			Quaternion<T> result;
+			const float num2 = q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w;
+			if( num2 >= 0.0f ) {
+				result.x = num * q1.x + amount * q2.x;
+				result.y = num * q1.y + amount * q2.y;
+				result.z = num * q1.z + amount * q2.z;
+				result.w = num * q1.w + amount * q2.w;
+			} else {
+				result.x = num * q1.x - amount * q2.x;
+				result.y = num * q1.y - amount * q2.y;
+				result.z = num * q1.z - amount * q2.z;
+				result.w = num * q1.w - amount * q2.w;
+			}
+			const float num3 = result.x * result.x + result.y * result.y + result.z * result.z + result.w * result.w;
+			const float num4 = 1.0f / sqrtf(num3);
+			result.x *= num4;
+			result.y *= num4;
+			result.z *= num4;
+			result.w *= num4;
+			return result;
+		}
+
     // Binary arithmetic operators.
     template<typename T>
     inline Quaternion<T> operator+( const Quaternion<T>& lhs, const Quaternion<T>& rhs ) {
