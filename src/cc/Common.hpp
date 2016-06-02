@@ -214,7 +214,7 @@ namespace cc {
     template<typename T>
     inline bool equal( T val1, T val2 ) {
       const T diff = val1 - val2;
-      return diff >= static_cast<T>(0) && diff <= static_cast<T>(EPSILON);
+      return fabsf(diff) <= static_cast<T>(EPSILON);
     }
 
     /**
