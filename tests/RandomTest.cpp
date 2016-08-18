@@ -16,8 +16,8 @@ public:
 			}
 		}
 
-		const int MIN_F = -1000.0f;
-		const int MAX_F = 1000.0f;
+		const float MIN_F = -1000.0f;
+		const float MAX_F = 1000.0f;
 		for( int i = 0; i < 1000; ++i ) {
 			const float val = cc::math::Random<float, int>::rangedReal(MIN_F, MAX_F);
 			if( val < MIN_F || val > MAX_F ) {
